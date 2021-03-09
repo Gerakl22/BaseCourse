@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <stdlib.h> 
 #include <cstring>
 
 using namespace std;
@@ -7,19 +8,19 @@ using namespace std;
 int main()
 {
     // 3. ЦИФРА. Распечатайте первую цифру из дробной части вещественного положительного числа.
-    double x = 0;
-    int y = 0;
+    // double x = 0;
+    // int y = 0;
 
-    cout << "Write number: ";
-    cin >> x;
+    // cout << "Write number: ";
+    // cin >> x;
 
-    y = x * 10;
-    y = y % 10;
+    // y = x * 10;
+    // y = y % 10;
 
-    cout << y << endl;
+    // cout << y << endl;
 
     // 4. УГАДАЙ ЧИСЛО. Разработайте игру: компьютер загадывает число и выдает подсказки ("больше-меньше") пользователю.
-    int thinkOfNumber = 25, num;
+    int thinkOfNumber = rand() % 1000 + 1, num;
 
     cout << "Write number: ";
     cin >> num;
