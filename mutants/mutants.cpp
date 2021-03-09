@@ -16,7 +16,6 @@ int main()
 
     while (numberOfMutants > 0)
     {
-
         numberOfMutants = (((numberOfMutants * percentMultiplicationOfMutants) / 100) + numberOfMutants) - killMutants;
         daysForVictoryOverMutants++;
     }
