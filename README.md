@@ -6,7 +6,9 @@
 
 05.03.21. Find the least common multiple of two natural numbers. https://github.com/Gerakl22/BaseCourse/blob/main/leastCommonMultiple/leastCommonMultiple.cpp
 
-05.03.21. Find out what kind of triangle: equal, equicrural, rectangle or scalene.https://github.com/Gerakl22/BaseCourse/blob/main/triangle/triangle.cpp
+05.03.21. Find out what kind of triangle: equal, equicrural, rectangle or scalene. https://github.com/Gerakl22/BaseCourse/blob/main/triangle/triangle.cpp
 
+05.03.21. Find first number from the fractional part of a positive real number. https://github.com/Gerakl22/BaseCourse/blob/main/firstNumberInFraction/firstNumberInFraction.cpp
 
+05.03.21. Guess the number. https://github.com/Gerakl22/BaseCourse/blob/main/guessNumber/guessNumber.cpp
 
