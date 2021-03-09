@@ -22,4 +22,6 @@ int main()
     }
 
     cout << "Days for victory over mutants: " << daysForVictoryOverMutants << endl;
+
+    return 0;
 }

@@ -26,4 +26,6 @@ int main()
     }
 
     cout << "Least common multiple: " << mult / firstNumber << endl;
+
+    return 0;
 }

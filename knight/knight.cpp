@@ -24,4 +24,6 @@ int main()
     {
         cout << "No kick knight" << endl;
     }
+
+    return 0;
 }
