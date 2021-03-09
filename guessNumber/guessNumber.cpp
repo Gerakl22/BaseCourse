@@ -1,11 +1,14 @@
 #include <iostream>
 #include <cmath>
+#include <time.h>
+#include <stdlib.h>
 
 using namespace std;
 
 int main()
 {
-    int guessNumber = 25, number = 0;
+    srand(time(NULL));
+    int guessNumber = rand() % 1000 + 1, number;
 
     cout << "Write number: ";
     cin >> number;
