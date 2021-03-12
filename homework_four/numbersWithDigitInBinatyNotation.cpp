@@ -5,7 +5,7 @@ using namespace std;
 
 void numbersWithDigitInBinaryNotation(int number)
 {
-    int decimalNumbers = 0;
+    int decimalNumbers = 1;
 
     for (int i = 1; i < number; i++)
     {
