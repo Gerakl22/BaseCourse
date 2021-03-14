@@ -15,3 +15,5 @@
 12.03.21. You have to raise to a power any number. https://github.com/Gerakl22/BaseCourse/blob/main/homework_four/raiseToAPower.cpp
 
 12.03.21. Find numbers with digit in binary notation. https://github.com/Gerakl22/BaseCourse/blob/main/homework_four/numbersWithDigitInBinatyNotation.cpp
+
+12.03.21 find the Fibonacci sequence. https://github.com/Gerakl22/BaseCourse/blob/main/homework_four/fibonacci.cpp
