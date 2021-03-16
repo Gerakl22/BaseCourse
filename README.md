@@ -16,4 +16,8 @@
 
 12.03.21. Find numbers with digit in binary notation. https://github.com/Gerakl22/BaseCourse/blob/main/homework_four/numbersWithDigitInBinatyNotation.cpp
 
-12.03.21 find the Fibonacci sequence. https://github.com/Gerakl22/BaseCourse/blob/main/homework_four/fibonacci.cpp
+12.03.21. Find the Fibonacci sequence. https://github.com/Gerakl22/BaseCourse/blob/main/homework_four/fibonacci.cpp
+
+16.03.21. Find sum numbers of date of birth. https://github.com/Gerakl22/BaseCourse/blob/main/homework_five/sumNumbersDateOfBirth.cpp
+
+16.03.21. Implement reverse number. https://github.com/Gerakl22/BaseCourse/blob/main/homework_five/sumNumbersDateOfBirth.cpp
