@@ -3,16 +3,7 @@
 
 using namespace std;
 
-void raiseToAPower(int number, int degree)
-{
-    int sum = 1;
-    for (int i = 1; i <= degree; i++)
-    {
-        sum *= number;
-    }
-
-    cout << "Raised number: " << sum << endl;
-}
+void raiseToAPower(int number, int degree);
 
 int main()
 {
@@ -26,4 +17,15 @@ int main()
     raiseToAPower(number, degree);
 
     return 0;
+}
+
+void raiseToAPower(int number, int degree)
+{
+    int sum = 1;
+    for (int i = 1; i <= degree; i++)
+    {
+        sum *= number;
+    }
+
+    cout << "Raised number: " << sum << endl;
 }

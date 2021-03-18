@@ -3,6 +3,20 @@
 
 using namespace std;
 
+void numbersWithDigitInBinaryNotation(int number);
+
+int main()
+{
+    int number = 0;
+
+    cout << "Write number: ";
+    cin >> number;
+
+    numbersWithDigitInBinaryNotation(number);
+
+    return 0;
+}
+
 void numbersWithDigitInBinaryNotation(int number)
 {
     int decimalNumbers = 1;
@@ -15,16 +29,4 @@ void numbersWithDigitInBinaryNotation(int number)
             decimalNumbers = (decimalNumbers * 2) + 1;
         }
     }
-}
-
-int main()
-{
-    int number = 0;
-
-    cout << "Write number: ";
-    cin >> number;
-
-    numbersWithDigitInBinaryNotation(number);
-
-    return 0;
 }
