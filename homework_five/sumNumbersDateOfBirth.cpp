@@ -3,6 +3,7 @@
 
 using namespace std;
 
+int sumNumbersDayOrMonth(int number);
 int sumNumbersDateOfBirth(int day, int month, int year);
 
 int main()
@@ -21,10 +22,15 @@ int main()
     return 0;
 }
 
+int sumNumbersDayOrMonth(int number)
+{
+    return number / 10 + number % 10;
+}
+
 int sumNumbersDateOfBirth(int day, int month, int year)
 {
-    day = day / 10 + day % 10;
-    month = month / 10 + month % 10;
+    day = sumNumbersDayOrMonth(day);
+    month = sumNumbersDayOrMonth(month);
     year = year / 1000 + ((year / 100) % 10) + ((year / 10) % 10) + year % 10;
 
     return day + month + year;
