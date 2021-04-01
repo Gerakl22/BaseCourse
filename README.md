@@ -24,3 +24,4 @@
 
 31.03.21. The array consists of terrain profile heights with a constant horizontal step. Find areas (elevation points) that are invisible to the observer at the first point. https://github.com/Gerakl22/BaseCourse/blob/main/homework_six/FindInvisibleObserver.cpp
 
+31.03.21. Recruits. The recruits are lined up. On the command LEFT! some of them turn left, while others turn right. This is the starting position of the line. Further, each recruit acts as follows: seeing the face of a neighbor in front of him, he turns around in exactly a second. Eventually the turns will stop, then the sergeant will beep. https://github.com/Gerakl22/BaseCourse/blob/main/homework_six/recruits.cpp
