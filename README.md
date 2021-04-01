@@ -21,3 +21,6 @@
 16.03.21. Find sum numbers of date of birth. https://github.com/Gerakl22/BaseCourse/blob/main/homework_five/sumNumbersDateOfBirth.cpp
 
 16.03.21. Implement reverse number. https://github.com/Gerakl22/BaseCourse/blob/main/homework_five/reverseNumber.cpp
+
+31.03.21. The array consists of terrain profile heights with a constant horizontal step. Find areas (elevation points) that are invisible to the observer at the first point. https://github.com/Gerakl22/BaseCourse/blob/main/homework_six/FindInvisibleObserver.cpp
+
