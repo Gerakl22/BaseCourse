@@ -46,6 +46,7 @@ void changePositionOfRecruits(string arr[], int N)
                 string temp = arr[i];
                 arr[i] = arr[i - 1];
                 arr[i - 1] = temp;
+                i++;
             }
         }
 
