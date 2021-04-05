@@ -115,37 +115,27 @@ bool isWinGame(char cell)
 
 int getNumberFromUser(int number, int selectRow, int selectColumn)
 {
-
-    cout << "Please, write number from 1 to 9: ";
-    cin >> number;
-    cout << endl;
-
-    clearScreen();
-
-    if (number < 1 || number > 9)
+    while (matrix[selectRow][selectColumn] == X_CELL || matrix[selectRow][selectColumn] == O_CELL || number < 1 || number > 9)
     {
-        return false;
+        cout << "Please, write number from 1 to 9: ";
+        cin >> number;
+        cout << endl;
+
+        clearScreen();
+
+        if (number % N == 0)
+        {
+            selectRow = number / N - 1;
+            selectColumn = N - 1;
+        }
+        else
+        {
+            selectRow = number / N;
+            selectColumn = number % 3 - 1;
+        }
     }
 
-    if (number % N == 0)
-    {
-        selectRow = number / N - 1;
-        selectColumn = N - 1;
-    }
-    else
-    {
-        selectRow = number / N;
-        selectColumn = number % 3 - 1;
-    }
-
-    if (matrix[selectRow][selectColumn] == X_CELL || matrix[selectRow][selectColumn] == O_CELL)
-    {
-        return false;
-    }
-    else
-    {
-        matrix[selectRow][selectColumn] = X_CELL;
-    }
+    matrix[selectRow][selectColumn] = X_CELL;
 }
 
 int getNumberFromComputer(int number, int selectRow, int selectColumn)
