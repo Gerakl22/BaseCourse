@@ -23,6 +23,7 @@ int getNumberFromUser(int &number, int &selectRow, int &selectColumn);
 bool isCellCorrect(int &number);
 bool isCellEmpty(int &selectRow, int &selectColumn);
 bool isWinGame(char cell);
+bool isDrawnGame(int &selectRow, int &selectColumn);
 
 int main()
 {
@@ -41,6 +42,12 @@ int main()
         if (isWinGame(X_CELL))
         {
             cout << "Congratulations, you win!" << endl;
+            break;
+        }
+
+        if (isDrawnGame(selectRow, selectColumn))
+        {
+            cout << "It's draw in a game!" << endl;
             break;
         }
 
@@ -67,6 +74,22 @@ bool isCellEmpty(int &selectRow, int &selectColumn)
     }
 }
 
+bool isDrawnGame(int &selectRow, int &selectColumn)
+{
+    for (int selectRow = 0; selectRow < N; selectRow++)
+    {
+        for (int selectColumn = 0; selectColumn < N; selectColumn++)
+        {
+            if (matrix[selectRow][selectColumn] == EMPTY_CELL)
+            {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 bool isWinGame(char cell)
 {
     for (int row = 0; row < N; row++)
@@ -85,12 +108,7 @@ bool isWinGame(char cell)
         }
     }
 
-    if (matrix[0][0] == cell && matrix[1][1] == cell && matrix[2][2] == cell)
-    {
-        return true;
-    }
-
-    if (matrix[0][2] == cell && matrix[1][1] == cell && matrix[2][0] == cell)
+    if ((matrix[0][0] == cell && matrix[1][1] == cell && matrix[2][2] == cell) || (matrix[0][2] == cell && matrix[1][1] == cell && matrix[2][0] == cell))
     {
         return true;
     }
