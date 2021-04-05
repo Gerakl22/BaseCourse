@@ -71,7 +71,6 @@ int main()
     return 0;
 }
 
-
 bool isDrawnGame(int selectRow, int selectColumn)
 {
     for (int selectRow = 0; selectRow < N; selectRow++)
@@ -151,29 +150,23 @@ int getNumberFromUser(int number, int selectRow, int selectColumn)
 
 int getNumberFromComputer(int number, int selectRow, int selectColumn)
 {
-    number = 1 + rand() % 9;
+    while ((matrix[selectRow][selectColumn] == X_CELL || matrix[selectRow][selectColumn] == O_CELL))
+    {
+        number = 1 + rand() % 9;
 
-    clearScreen();
+        if (number % N == 0)
+        {
+            selectRow = number / N - 1;
+            selectColumn = N - 1;
+        }
+        else
+        {
+            selectRow = number / N;
+            selectColumn = number % 3 - 1;
+        }
+    }
 
-    if (number % N == 0)
-    {
-        selectRow = number / N - 1;
-        selectColumn = N - 1;
-    }
-    else
-    {
-        selectRow = number / N;
-        selectColumn = number % 3 - 1;
-    }
-
-    if (matrix[selectRow][selectColumn] == X_CELL || matrix[selectRow][selectColumn] == O_CELL)
-    {
-        return false;
-    }
-    else
-    {
-        matrix[selectRow][selectColumn] = O_CELL;
-    }
+    matrix[selectRow][selectColumn] = O_CELL;
 }
 
 void createMatrix()
