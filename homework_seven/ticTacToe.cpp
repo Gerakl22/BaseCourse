@@ -18,12 +18,11 @@ void createMatrix();
 void showMatrix();
 void showRules();
 
-int getNumberFromUser(int &number, int &selectRow, int &selectColumn);
+int getNumberFromUser(int number, int selectRow, int selectColumn);
+int getNumberFromComputer(int number, int selectRow, int selectColumn);
 
-bool isCellCorrect(int &number);
-bool isCellEmpty(int &selectRow, int &selectColumn);
 bool isWinGame(char cell);
-bool isDrawnGame(int &selectRow, int &selectColumn);
+bool isDrawnGame(int selectRow, int selectColumn);
 
 int main()
 {
@@ -47,9 +46,11 @@ int main()
 
         if (isDrawnGame(selectRow, selectColumn))
         {
-            cout << "It's draw in a game!" << endl;
+            cout << "It's drawn in a game!" << endl;
             break;
         }
+
+        getNumberFromComputer(number, selectRow, selectColumn);
 
         showRules();
         showMatrix();
@@ -58,23 +59,8 @@ int main()
     return 0;
 }
 
-bool isCellCorrect(int &number)
-{
-    if (number < 1 && number > 9)
-    {
-        return false;
-    }
-}
 
-bool isCellEmpty(int &selectRow, int &selectColumn)
-{
-    if (matrix[selectRow][selectColumn] == X_CELL && matrix[selectRow][selectColumn] == O_CELL)
-    {
-        return false;
-    }
-}
-
-bool isDrawnGame(int &selectRow, int &selectColumn)
+bool isDrawnGame(int selectRow, int selectColumn)
 {
     for (int selectRow = 0; selectRow < N; selectRow++)
     {
@@ -116,14 +102,19 @@ bool isWinGame(char cell)
     return false;
 }
 
-int getNumberFromUser(int &number, int &selectRow, int &selectColumn)
+int getNumberFromUser(int number, int selectRow, int selectColumn)
 {
+
     cout << "Please, write number from 1 to 9: ";
     cin >> number;
     cout << endl;
 
     clearScreen();
-    isCellCorrect(number);
+
+    if (number < 1 || number > 9)
+    {
+        return false;
+    }
 
     if (number % N == 0)
     {
@@ -136,9 +127,41 @@ int getNumberFromUser(int &number, int &selectRow, int &selectColumn)
         selectColumn = number % 3 - 1;
     }
 
-    isCellEmpty(selectRow, selectColumn);
+    if (matrix[selectRow][selectColumn] == X_CELL || matrix[selectRow][selectColumn] == O_CELL)
+    {
+        return false;
+    }
+    else
+    {
+        matrix[selectRow][selectColumn] = X_CELL;
+    }
+}
 
-    matrix[selectRow][selectColumn] = X_CELL;
+int getNumberFromComputer(int number, int selectRow, int selectColumn)
+{
+    number = 1 + rand() % 9;
+
+    clearScreen();
+
+    if (number % N == 0)
+    {
+        selectRow = number / N - 1;
+        selectColumn = N - 1;
+    }
+    else
+    {
+        selectRow = number / N;
+        selectColumn = number % 3 - 1;
+    }
+
+    if (matrix[selectRow][selectColumn] == X_CELL || matrix[selectRow][selectColumn] == O_CELL)
+    {
+        return false;
+    }
+    else
+    {
+        matrix[selectRow][selectColumn] = O_CELL;
+    }
 }
 
 void createMatrix()
