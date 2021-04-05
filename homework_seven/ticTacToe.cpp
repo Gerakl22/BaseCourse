@@ -4,8 +4,8 @@
 
 #define N 3
 
-#define SELECT_X char(88) // "X"
-#define SELECT_O char(79) // "O"
+#define X_CELL char(88) // "X"
+#define O_CELL char(79) // "O"
 
 #define EMPTY_CELL char(45) // "_"
 
@@ -22,6 +22,7 @@ int getNumberFromUser(int &number, int &selectRow, int &selectColumn);
 
 bool isCellCorrect(int &number);
 bool isCellEmpty(int &selectRow, int &selectColumn);
+bool isWinGame(char cell);
 
 int main()
 {
@@ -35,8 +36,14 @@ int main()
 
     while (true)
     {
-
         getNumberFromUser(number, selectRow, selectColumn);
+
+        if (isWinGame(X_CELL))
+        {
+            cout << "Congratulations, you win!" << endl;
+            break;
+        }
+
         showRules();
         showMatrix();
     }
@@ -54,10 +61,41 @@ bool isCellCorrect(int &number)
 
 bool isCellEmpty(int &selectRow, int &selectColumn)
 {
-    if (matrix[selectRow][selectColumn] == SELECT_X && matrix[selectRow][selectColumn] == SELECT_O)
+    if (matrix[selectRow][selectColumn] == X_CELL && matrix[selectRow][selectColumn] == O_CELL)
     {
         return false;
     }
+}
+
+bool isWinGame(char cell)
+{
+    for (int row = 0; row < N; row++)
+    {
+        if (matrix[row][0] == cell && matrix[row][1] == cell && matrix[row][2] == cell)
+        {
+            return true;
+        }
+    }
+
+    for (int column = 0; column < N; column++)
+    {
+        if (matrix[0][column] == cell && matrix[1][column] == cell && matrix[2][column] == cell)
+        {
+            return true;
+        }
+    }
+
+    if (matrix[0][0] == cell && matrix[1][1] == cell && matrix[2][2] == cell)
+    {
+        return true;
+    }
+
+    if (matrix[0][2] == cell && matrix[1][1] == cell && matrix[2][0] == cell)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 int getNumberFromUser(int &number, int &selectRow, int &selectColumn)
@@ -82,7 +120,7 @@ int getNumberFromUser(int &number, int &selectRow, int &selectColumn)
 
     isCellEmpty(selectRow, selectColumn);
 
-    matrix[selectRow][selectColumn] = SELECT_X;
+    matrix[selectRow][selectColumn] = X_CELL;
 }
 
 void createMatrix()
