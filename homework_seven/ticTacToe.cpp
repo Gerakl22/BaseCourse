@@ -52,6 +52,18 @@ int main()
 
         getNumberFromComputer(number, selectRow, selectColumn);
 
+        if (isWinGame(O_CELL))
+        {
+            cout << "Congratulations, computer win!" << endl;
+            break;
+        }
+
+        if (isDrawnGame(selectRow, selectColumn))
+        {
+            cout << "It's drawn in a game!" << endl;
+            break;
+        }
+
         showRules();
         showMatrix();
     }
