@@ -54,7 +54,7 @@ int main()
 
         if (isWinGame(O_CELL))
         {
-            cout << "Congratulations, computer win!" << endl;
+            cout << "Sorry, computer win!" << endl;
             break;
         }
 
