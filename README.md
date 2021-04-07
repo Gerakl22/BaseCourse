@@ -27,3 +27,5 @@
 31.03.21. Recruits. The recruits are lined up. On the command LEFT! some of them turn left, while others turn right. This is the starting position of the line. Further, each recruit acts as follows: seeing the face of a neighbor in front of him, he turns around in exactly a second. Eventually the turns will stop, then the sergeant will beep. https://github.com/Gerakl22/BaseCourse/blob/main/homework_six/recruits.cpp
 
 02.01.21. Gleam. The cube consists of n3 transparent and opaque cubes. Is there at least one gap? https://github.com/Gerakl22/BaseCourse/blob/main/homework_seven/checkGleamInCube.cpp 
+
+02.01.21. Tic tac toe. Computer play against user. Computer never lose. https://github.com/Gerakl22/BaseCourse/blob/main/homework_seven/ticTacToe.cpp
