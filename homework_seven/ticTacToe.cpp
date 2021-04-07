@@ -25,41 +25,99 @@ bool isWinGame(char cell);
 int main()
 {
     srand(time(NULL));
-    int number = 0, row = 0, column = 0;
+    int number = 0, row = 0, column = 0, randomNumber = -1;
+    char cellXComputer, cellOUser, cellXUser, cellOComputer;
+
+    randomNumber = rand() % 2;
+
+    if (randomNumber == 0)
+    {
+        cellXComputer = X_CELL;
+        cellOUser = O_CELL;
+    }
+    else
+    {
+        cellXUser = X_CELL;
+        cellOComputer = O_CELL;
+    }
 
     createMatrix();
 
     while (true)
     {
-        getNumberFromComputer(X_CELL);
-
-        if (isWinGame(X_CELL))
+        if (randomNumber == 0)
         {
-            cout << "Sorry friend, computer win!" << endl;
-            break;
+            getNumberFromComputer(cellXComputer);
+
+            if (isWinGame(cellXComputer))
+            {
+                cout << "Sorry friend, computer win!" << endl;
+                showMatrix();
+                break;
+            }
+
+            if (isDrawnGame(row, column))
+            {
+                cout << "It's drawn in a game!" << endl;
+                showMatrix();
+                break;
+            }
+
+            showRules();
+            showMatrix();
+
+            getNumberFromUser(cellOUser, number, row, column);
+
+            if (isWinGame(cellOUser))
+            {
+                cout << "Congratulations, you win!" << endl;
+                showMatrix();
+                break;
+            }
+
+            if (isDrawnGame(row, column))
+            {
+                cout << "It's drawn in a game!" << endl;
+                showMatrix();
+                break;
+            }
         }
-
-        if (isDrawnGame(row, column))
+        else
         {
-            cout << "It's drawn in a game!" << endl;
-            break;
-        }
+            showRules();
+            showMatrix();
 
-        showRules();
-        showMatrix();
+            getNumberFromUser(cellXUser, number, row, column);
 
-        getNumberFromUser(O_CELL, number, row, column);
+            if (isWinGame(cellXUser))
+            {
+                cout << "Congratulations, you win!" << endl;
+                showMatrix();
+                break;
+            }
 
-        if (isWinGame(O_CELL))
-        {
-            cout << "Congratulations, you win!" << endl;
-            break;
-        }
+            if (isDrawnGame(row, column))
+            {
+                cout << "It's drawn in a game!" << endl;
+                showMatrix();
+                break;
+            }
 
-        if (isDrawnGame(row, column))
-        {
-            cout << "It's drawn in a game!" << endl;
-            break;
+            getNumberFromComputer(cellOComputer);
+
+            if (isWinGame(cellOComputer))
+            {
+                cout << "Sorry friend, computer win!" << endl;
+                showMatrix();
+                break;
+            }
+
+            if (isDrawnGame(row, column))
+            {
+                cout << "It's drawn in a game!" << endl;
+                showMatrix();
+                break;
+            }
         }
     }
 
@@ -135,6 +193,8 @@ int getNumberFromUser(char cell, int number, int row, int column)
 
 int getNumberFromComputer(char cell)
 {
+    int randRow = 0, randColumn = 0;
+
     //check the center
     if ((matrix[0][0] == matrix[2][2]) && (matrix[1][1] == EMPTY_CELL))
     {
@@ -144,6 +204,14 @@ int getNumberFromComputer(char cell)
     if ((matrix[0][2] == matrix[2][0]) && ((matrix[1][1] == EMPTY_CELL)))
     {
         return matrix[1][1] = cell;
+    }
+
+    if ((matrix[1][1] != EMPTY_CELL) && (matrix[0][0] == matrix[0][2]) && (matrix[2][0] == matrix[2][2]) && (matrix[0][0] == EMPTY_CELL))
+    {
+        randRow = rand() % 3;
+        randColumn = rand() % 3;
+
+        return matrix[randRow][randColumn] = cell;
     }
 
     // check row and computer can win
@@ -360,8 +428,6 @@ void showRules()
     cout << "This is game of tic-tac-toe and you will play against computer";
     cout << endl;
     cout << "You have to choose option and it will you move game: ";
-    cout << endl;
-    cout << "Sorry, computer always will move first";
     cout << endl;
 
     cout << "__________" << endl;
