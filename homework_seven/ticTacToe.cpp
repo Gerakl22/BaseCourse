@@ -27,19 +27,7 @@ bool isDrawnGame(int row, int column);
 int main()
 {
     srand(time(NULL));
-    int number = 0, row = 0, column = 0, randomPlayer = -1;
-    char cell;
-
-    randomPlayer = rand() % 2;
-
-    if (randomPlayer == 0)
-    {
-        cell = X_CELL;
-    }
-    else
-    {
-        cell = O_CELL;
-    }
+    int number = 0, row = 0, column = 0;
 
     createMatrix();
 
