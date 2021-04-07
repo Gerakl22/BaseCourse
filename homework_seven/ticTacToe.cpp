@@ -11,23 +11,35 @@
 
 using namespace std;
 
-char matrix[N][N] = {};
+char matrix[][N] = {};
 
 void clearScreen();
 void createMatrix();
 void showMatrix();
 void showRules();
 
-int getNumberFromUser(int number, int selectRow, int selectColumn);
+int getNumberFromUser(int number, int row, int column);
 int getNumberFromComputer();
 
 bool isWinGame(char cell);
-bool isDrawnGame(int selectRow, int selectColumn);
+bool isDrawnGame(int row, int column);
 
 int main()
 {
     srand(time(NULL));
-    int number = 0, selectRow = 0, selectColumn = 0;
+    int number = 0, row = 0, column = 0, randomPlayer = -1;
+    char cell;
+
+    randomPlayer = rand() % 2;
+
+    if (randomPlayer == 0)
+    {
+        cell = X_CELL;
+    }
+    else
+    {
+        cell = O_CELL;
+    }
 
     createMatrix();
 
@@ -42,7 +54,7 @@ int main()
             break;
         }
 
-        if (isDrawnGame(selectRow, selectColumn))
+        if (isDrawnGame(row, column))
         {
             cout << "It's drawn in a game!" << endl;
             break;
@@ -51,7 +63,7 @@ int main()
         showRules();
         showMatrix();
 
-        getNumberFromUser(number, selectRow, selectColumn);
+        getNumberFromUser(number, row, column);
 
         if (isWinGame(O_CELL))
         {
@@ -59,7 +71,7 @@ int main()
             break;
         }
 
-        if (isDrawnGame(selectRow, selectColumn))
+        if (isDrawnGame(row, column))
         {
             cout << "It's drawn in a game!" << endl;
             break;
@@ -69,13 +81,13 @@ int main()
     return 0;
 }
 
-bool isDrawnGame(int selectRow, int selectColumn)
+bool isDrawnGame(int row, int column)
 {
-    for (int selectRow = 0; selectRow < N; selectRow++)
+    for (int row = 0; row < N; row++)
     {
-        for (int selectColumn = 0; selectColumn < N; selectColumn++)
+        for (int column = 0; column < N; column++)
         {
-            if (matrix[selectRow][selectColumn] == EMPTY_CELL)
+            if (matrix[row][column] == EMPTY_CELL)
             {
                 return false;
             }
@@ -111,9 +123,9 @@ bool isWinGame(char cell)
     return false;
 }
 
-int getNumberFromUser(int number, int selectRow, int selectColumn)
+int getNumberFromUser(int number, int row, int column)
 {
-    while (matrix[selectRow][selectColumn] == X_CELL || matrix[selectRow][selectColumn] == O_CELL || number < 1 || number > 9)
+    while (matrix[row][column] == X_CELL || matrix[row][column] == O_CELL || number < 1 || number > 9)
     {
         cout << "Please, write number from 1 to 9: ";
         cin >> number;
@@ -123,17 +135,17 @@ int getNumberFromUser(int number, int selectRow, int selectColumn)
 
         if (number % N == 0)
         {
-            selectRow = number / N - 1;
-            selectColumn = N - 1;
+            row = number / N - 1;
+            column = N - 1;
         }
         else
         {
-            selectRow = number / N;
-            selectColumn = number % 3 - 1;
+            row = number / N;
+            column = number % 3 - 1;
         }
     }
 
-    matrix[selectRow][selectColumn] = O_CELL;
+    return matrix[row][column] = O_CELL;
 }
 
 int getNumberFromComputer()
