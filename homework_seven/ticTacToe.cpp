@@ -19,7 +19,7 @@ void showMatrix();
 void showRules();
 
 int getNumberFromUser(int number, int selectRow, int selectColumn);
-int getNumberFromComputer(int number, int selectRow, int selectColumn);
+int getNumberFromComputer();
 
 bool isWinGame(char cell);
 bool isDrawnGame(int selectRow, int selectColumn);
@@ -27,34 +27,18 @@ bool isDrawnGame(int selectRow, int selectColumn);
 int main()
 {
     srand(time(NULL));
-
     int number = 0, selectRow = 0, selectColumn = 0;
-
-    showRules();
 
     createMatrix();
 
     while (true)
     {
-        getNumberFromUser(number, selectRow, selectColumn);
+
+        getNumberFromComputer();
 
         if (isWinGame(X_CELL))
         {
-            cout << "Congratulations, you win!" << endl;
-            break;
-        }
-
-        if (isDrawnGame(selectRow, selectColumn))
-        {
-            cout << "It's drawn in a game!" << endl;
-            break;
-        }
-
-        getNumberFromComputer(number, selectRow, selectColumn);
-
-        if (isWinGame(O_CELL))
-        {
-            cout << "Sorry, computer win!" << endl;
+            cout << "Sorry friend, computer win!" << endl;
             break;
         }
 
@@ -66,6 +50,20 @@ int main()
 
         showRules();
         showMatrix();
+
+        getNumberFromUser(number, selectRow, selectColumn);
+
+        if (isWinGame(O_CELL))
+        {
+            cout << "Congratulations, you win!" << endl;
+            break;
+        }
+
+        if (isDrawnGame(selectRow, selectColumn))
+        {
+            cout << "It's drawn in a game!" << endl;
+            break;
+        }
     }
 
     return 0;
@@ -135,28 +133,197 @@ int getNumberFromUser(int number, int selectRow, int selectColumn)
         }
     }
 
-    matrix[selectRow][selectColumn] = X_CELL;
+    matrix[selectRow][selectColumn] = O_CELL;
 }
 
-int getNumberFromComputer(int number, int selectRow, int selectColumn)
+int getNumberFromComputer()
 {
-    while ((matrix[selectRow][selectColumn] == X_CELL || matrix[selectRow][selectColumn] == O_CELL))
+    //check the center
+    if ((matrix[0][0] == matrix[2][2]) && (matrix[1][1] == EMPTY_CELL))
     {
-        number = 1 + rand() % 9;
+        return matrix[1][1] = X_CELL;
+    }
 
-        if (number % N == 0)
+    if ((matrix[0][2] == matrix[2][0]) && ((matrix[1][1] == EMPTY_CELL)))
+    {
+        return matrix[1][1] = X_CELL;
+    }
+
+    // check row and computer can win
+    for (int row = 0; row < N; row++)
+    {
+        if ((matrix[row][0] == X_CELL) && (matrix[row][1] == matrix[row][0]) && (matrix[row][2] == EMPTY_CELL))
         {
-            selectRow = number / N - 1;
-            selectColumn = N - 1;
-        }
-        else
-        {
-            selectRow = number / N;
-            selectColumn = number % 3 - 1;
+            return matrix[row][2] = X_CELL;
         }
     }
 
-    matrix[selectRow][selectColumn] = O_CELL;
+    for (int row = 0; row < N; row++)
+    {
+        if ((matrix[row][1] == X_CELL) && (matrix[row][2] == matrix[row][1]) && (matrix[row][0] == EMPTY_CELL))
+        {
+            return matrix[row][0] = X_CELL;
+        }
+    }
+
+    for (int row = 0; row < N; row++)
+    {
+        if ((matrix[row][0] == X_CELL) && (matrix[row][2] == matrix[row][0]) && (matrix[row][1] == EMPTY_CELL))
+        {
+            return matrix[row][1] = X_CELL;
+        }
+    }
+
+    // check row and computer can defend
+    for (int row = 0; row < N; row++)
+    {
+        if ((matrix[row][0] == O_CELL) && (matrix[row][1] == matrix[row][0]) && (matrix[row][2] == EMPTY_CELL))
+        {
+            return matrix[row][2] = X_CELL;
+        }
+    }
+
+    for (int row = 0; row < N; row++)
+    {
+        if ((matrix[row][1] == O_CELL) && (matrix[row][2] == matrix[row][1]) && (matrix[row][0] == EMPTY_CELL))
+        {
+            return matrix[row][0] = X_CELL;
+        }
+    }
+
+    for (int row = 0; row < N; row++)
+    {
+        if ((matrix[row][0] == O_CELL) && (matrix[row][2] == matrix[row][0]) && (matrix[row][1] == EMPTY_CELL))
+        {
+            return matrix[row][1] = X_CELL;
+        }
+    }
+
+    // check column and computer can win
+    for (int column = 0; column < N; column++)
+    {
+        if ((matrix[0][column] == X_CELL) && (matrix[1][column] == matrix[0][column]) && (matrix[2][column] == EMPTY_CELL))
+        {
+            return matrix[2][column] = X_CELL;
+        }
+    }
+
+    for (int column = 0; column < N; column++)
+    {
+        if ((matrix[1][column] == X_CELL) && (matrix[2][column] == matrix[1][column]) && (matrix[0][column] == EMPTY_CELL))
+        {
+            return matrix[0][column] = X_CELL;
+        }
+    }
+
+    for (int column = 0; column < N; column++)
+    {
+        if ((matrix[0][column] == O_CELL || matrix[0][column] == X_CELL) && (matrix[2][column] == matrix[0][column]) && (matrix[1][column] == EMPTY_CELL))
+        {
+            return matrix[1][column] = X_CELL;
+        }
+    }
+
+    // check column and computer can defend
+    for (int column = 0; column < N; column++)
+    {
+        if ((matrix[0][column] == O_CELL) && (matrix[1][column] == matrix[0][column]) && (matrix[2][column] == EMPTY_CELL))
+        {
+            return matrix[2][column] = X_CELL;
+        }
+    }
+
+    for (int column = 0; column < N; column++)
+    {
+        if ((matrix[1][column] == O_CELL) && (matrix[2][column] == matrix[1][column]) && (matrix[0][column] == EMPTY_CELL))
+        {
+            return matrix[0][column] = X_CELL;
+        }
+    }
+
+    for (int column = 0; column < N; column++)
+    {
+        if ((matrix[0][column] == O_CELL) && (matrix[2][column] == matrix[0][column]) && (matrix[1][column] == EMPTY_CELL))
+        {
+            return matrix[1][column] = X_CELL;
+        }
+    }
+
+    // check diagonal
+    if ((matrix[0][0] == matrix[1][1]) && (matrix[2][2] == EMPTY_CELL))
+    {
+        return matrix[2][2] = X_CELL;
+    }
+
+    if ((matrix[2][0] == matrix[1][1]) && (matrix[0][2] == EMPTY_CELL))
+    {
+        return matrix[0][2] = X_CELL;
+    }
+
+    if ((matrix[0][2] == matrix[1][1]) && (matrix[2][0] == EMPTY_CELL))
+    {
+        return matrix[2][0] = X_CELL;
+    }
+
+    if ((matrix[2][2] == matrix[1][1]) && (matrix[0][0] == EMPTY_CELL))
+    {
+        return matrix[0][0] = X_CELL;
+    }
+
+    // begin game if user step on diagonal
+    if ((matrix[0][0] == O_CELL || matrix[0][0] == X_CELL) && (matrix[0][1] == matrix[0][2]) && (matrix[0][2] == EMPTY_CELL && matrix[1][1] == X_CELL))
+    {
+        return matrix[0][2] = X_CELL;
+    }
+
+    if ((matrix[0][2] == O_CELL || matrix[0][2] == X_CELL) && (matrix[0][0] == matrix[0][1]) && (matrix[2][2] == EMPTY_CELL && matrix[1][1] == X_CELL))
+    {
+        return matrix[2][2] = X_CELL;
+    }
+
+    if ((matrix[2][0] == O_CELL || matrix[2][0] == X_CELL) && (matrix[2][2] == matrix[2][1]) && (matrix[0][0] == EMPTY_CELL && matrix[1][1] == X_CELL))
+    {
+        return matrix[0][0] = X_CELL;
+    }
+
+    if ((matrix[2][2] == O_CELL || matrix[2][2] == X_CELL) && (matrix[2][0] == matrix[2][1]) && (matrix[2][0] == EMPTY_CELL && matrix[1][1] == X_CELL))
+    {
+        return matrix[2][0] = X_CELL;
+    }
+
+    // finish game if user step on diagonal
+
+    if ((matrix[0][0] == O_CELL || matrix[0][0] == X_CELL) && (matrix[1][0] != EMPTY_CELL) && (matrix[1][1] != EMPTY_CELL) && (matrix[1][2] != EMPTY_CELL) && (matrix[0][1] == EMPTY_CELL))
+    {
+        return matrix[0][1] = X_CELL;
+    }
+
+    if ((matrix[2][0] == O_CELL || matrix[2][0] == X_CELL) && (matrix[0][1] != EMPTY_CELL) && (matrix[1][1] != EMPTY_CELL) && (matrix[2][1] != EMPTY_CELL) && (matrix[1][0] == EMPTY_CELL))
+    {
+        return matrix[1][0] = X_CELL;
+    }
+
+    if ((matrix[0][2] == O_CELL || matrix[0][2] == X_CELL) && (matrix[0][1] != EMPTY_CELL) && (matrix[1][1] != EMPTY_CELL) && (matrix[2][1] != EMPTY_CELL) && (matrix[1][2] == EMPTY_CELL))
+    {
+        return matrix[1][2] = X_CELL;
+    }
+
+    if ((matrix[2][2] == O_CELL || matrix[2][2] == X_CELL) && (matrix[1][0] != EMPTY_CELL) && (matrix[1][1] != EMPTY_CELL) && (matrix[1][2] != EMPTY_CELL) && (matrix[2][1] == EMPTY_CELL))
+    {
+        return matrix[2][1] = X_CELL;
+    }
+
+    // user step to one side
+
+    if ((matrix[0][1] == O_CELL || matrix[1][2] == O_CELL) && (matrix[0][0] == matrix[0][2]) && (matrix[2][0] == EMPTY_CELL))
+    {
+        return matrix[2][0] = X_CELL;
+    }
+
+    if ((matrix[1][0] == O_CELL || matrix[2][2] == O_CELL) && (matrix[2][0] == matrix[2][2]) && (matrix[0][2] == EMPTY_CELL))
+    {
+        return matrix[0][2] = X_CELL;
+    }
 }
 
 void createMatrix()
@@ -166,7 +333,6 @@ void createMatrix()
         for (int column = 0; column < N; column++)
         {
             matrix[row][column] = EMPTY_CELL;
-            cout << matrix[row][column] << " ";
         }
         cout << endl;
     }
@@ -194,9 +360,11 @@ void showRules()
     int counter = 1;
     int arr[N][N] = {};
 
-    cout << "This is game of tic-tac-toe and you will play against computer" << endl;
+    cout << "This is game of tic-tac-toe and you will play against computer";
     cout << endl;
-    cout << "You have to choose option and it will you game move: ";
+    cout << "You have to choose option and it will you move game: ";
+    cout << endl;
+    cout << "Sorry, computer always will move first";
     cout << endl;
 
     cout << "__________" << endl;
