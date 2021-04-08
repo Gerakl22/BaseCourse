@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <time.h>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ void showLife();
 
 int main()
 {
+    srand(time(NULL));
     createLife();
     showLife();
 
