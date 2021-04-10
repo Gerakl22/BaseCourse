@@ -288,7 +288,7 @@ int getNumberFromComputer(char cell)
 
     for (int column = 0; column < N; column++)
     {
-        if ((matrix[0][column] != EMPTY_CELL || matrix[0][column] == cell) && (matrix[2][column] == matrix[0][column]) && (matrix[1][column] == EMPTY_CELL))
+        if ((matrix[0][column] == cell) && (matrix[2][column] == matrix[0][column]) && (matrix[1][column] == EMPTY_CELL))
         {
             return matrix[1][column] = cell;
         }
