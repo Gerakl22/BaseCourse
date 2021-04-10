@@ -206,10 +206,15 @@ int getNumberFromComputer(char cell)
         return matrix[1][1] = cell;
     }
 
-    if ((matrix[1][1] != EMPTY_CELL) && (matrix[0][0] == matrix[0][2]) && (matrix[2][0] == matrix[2][2]) && (matrix[0][0] == EMPTY_CELL))
+    if ((matrix[1][1] != EMPTY_CELL) && (matrix[0][0] == matrix[0][2]) && (matrix[2][0] == matrix[2][2]) && (matrix[0][1] == matrix[2][1]) && (matrix[1][0] == matrix[1][2]) && (matrix[0][0] == EMPTY_CELL))
     {
         randRow = rand() % 3;
         randColumn = rand() % 3;
+
+        if (randRow == 1 && randColumn == 1)
+        {
+            return matrix[0][1] = cell;
+        }
 
         return matrix[randRow][randColumn] = cell;
     }
