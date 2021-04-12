@@ -13,7 +13,7 @@ void replaceNumberInString(char string[]);
 
 int main()
 {
-    char string[NUMBER] = "3f5a4f3ssd1";
+    char string[NUMBER] = "1f5a4f3s0d1";
 
     replaceNumberInString(string);
 
@@ -30,6 +30,11 @@ void replaceNumberInString(char string[])
         if (string[i] >= '0' && string[i] <= '9')
         {
             number = string[i] - '0';
+
+            if (number == 0)
+            { 
+                replaceArr[index] = ' ';
+            }
 
             if (number % 2 == 0)
             {
