@@ -30,4 +30,6 @@
 
 02.04.21. Tic tac toe. Use random that select who will step first: computer or user. Computer never lose, if he step first. https://github.com/Gerakl22/BaseCourse/blob/main/homework_seven/ticTacToe.cpp
 
+08.04.21. All function with char. https://github.com/Gerakl22/BaseCourse/blob/main/homework_practice/char.cpp
+
 09.04.21. Replace in string every even digit in plus and odd digit in minus in an amount equal to the value of the digit. https://github.com/Gerakl22/BaseCourse/blob/main/homework_eight/replaceNumberInString.cpp
