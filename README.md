@@ -35,3 +35,5 @@
 09.04.21. Replace in string every even digit in plus and odd digit in minus in an amount equal to the value of the digit. https://github.com/Gerakl22/BaseCourse/blob/main/homework_eight/replaceNumberInString.cpp
 
 09.04.21. Create field of game. https://github.com/Gerakl22/BaseCourse/blob/main/homework_eight/fieldOfDreams.cpp
+
+09.04.21. Fill out array in spiral string. Stirlitz encryption. https://github.com/Gerakl22/BaseCourse/blob/main/homework_eight/fillOutArrayInSpiral.cpp 
