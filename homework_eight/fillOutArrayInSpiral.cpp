@@ -5,18 +5,14 @@
 
 using namespace std;
 
-// #define NUMBER 3
 #define NUMBER 4
-// #define NUMBER 5
 #define NUMBERCHAR 256
 
 int getCounterWord(char word[]);
 
 int main()
 {
-    // char word[NUMBERCHAR] = "findwomen";
     char word[NUMBERCHAR] = "helloworldletter";
-    // char word[NUMBERCHAR] = "helloworldletterglobalcat";
     char spiral[NUMBER][NUMBER] = {0};
 
     int matrixOfNumbers = NUMBER * NUMBER;
